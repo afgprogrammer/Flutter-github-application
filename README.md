@@ -1,16 +1,12 @@
-# github_following
+# Flutter Expense Manager Application
 
-A new Flutter project.
+The Github Following Application, using Provider to manage state and Flutter http to get data from server.
 
-## Getting Started
+This is just a sample.
 
-This project is a starting point for a Flutter application.
+# install
+Please remember, after cloning this repository, you should edit GithubRequest.dart file and put your client_id, client_secret.
 
-A few resources to get you started if this is your first Flutter project:
+## Screenshot
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src="assets/preview1.png" height="500em" /><img src="assets/preview2.png" height="500em" /><img src="assets/preview3.png" height="500em" /><img src="assets/preview4.png" height="500em" />
