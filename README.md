@@ -11,4 +11,4 @@ Please remember, after cloning this repository, you should edit GithubRequest.da
 
 ## Screenshot
 
-<img src="assets/preview1.png" height="500em" /><img src="assets/preview2.png" height="500em" /><img src="assets/preview3.png" height="500em" /><img src="assets/preview4.png" height="500em" />
+<img src="assets/screenshot/preview1.png" height="450em" /><img src="assets/screenshot/preview2.png" height="450em" /><img src="assets/screenshot/preview3.png" height="450em" /><img src="assets/screenshot/preview4.png" height="450em" />
