@@ -1,4 +1,4 @@
-# Flutter Expense Manager Application
+# Flutter Github Following Application 
 
 The Github Following Application, using Provider to manage state and Flutter http to get data from server.
 
