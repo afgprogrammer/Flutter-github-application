@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:github_following/Models/User.dart';
-import 'package:github_following/Requests/GithubRequest.dart';
+import 'package:github_following/models/user.dart';
+import 'package:github_following/requests/github_request.dart';
 
 class UserProvider with ChangeNotifier {
   User user;

@@ -1,33 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:github_following/Pages/FollowingPage.dart';
-import 'package:github_following/Providers/UserProvider.dart';
+import 'package:github_following/Pages/following_page.dart';
+import 'package:github_following/providers/following_provider.dart';
+import 'package:github_following/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(
-  ChangeNotifierProvider<UserProvider>(
-    builder: (context) => UserProvider(),
+  MultiProvider(
+    providers: [
+      ChangeNotifierProvider(builder: (context) => UserProvider()),
+      ChangeNotifierProvider(builder: (context) => FollowingProvider()),
+    ],
     child: MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     ),
-  )
+  ),
 );
 
-class HomePage extends StatefulWidget {
-  @override
-  _StateHomePage createState() => _StateHomePage();
-}
-
-class _StateHomePage extends State<HomePage> {
-
+class HomePage extends StatelessWidget {
   TextEditingController _controller = TextEditingController();
 
-  void _getUser() {
+  void _getUser(BuildContext context) {
     if (_controller.text == '') {
       Provider.of<UserProvider>(context).setMessage('Please Enter your username');
     } else {
       Provider.of<UserProvider>(context).fetchUser(_controller.text).then((value) {
         if (value) {
+          Provider.of<FollowingProvider>(context).fetchList(_controller.text);
           Navigator.push(context, MaterialPageRoute(builder: (context) => FollowingPage()));
         }
       });
@@ -36,6 +35,7 @@ class _StateHomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -62,8 +62,8 @@ class _StateHomePage extends State<HomePage> {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.white.withOpacity(.1)
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white.withOpacity(.1)
                   ),
                   child: TextField(
                     onChanged: (value) {
@@ -73,10 +73,10 @@ class _StateHomePage extends State<HomePage> {
                     enabled: !Provider.of<UserProvider>(context).isLoading(),
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      errorText: Provider.of<UserProvider>(context).getMessage(),
-                      border: InputBorder.none,
-                      hintText: "Github username",
-                      hintStyle: TextStyle(color: Colors.grey)
+                        errorText: Provider.of<UserProvider>(context).getMessage(),
+                        border: InputBorder.none,
+                        hintText: "Github username",
+                        hintStyle: TextStyle(color: Colors.grey)
                     ),
                   ),
                 ),
@@ -85,16 +85,16 @@ class _StateHomePage extends State<HomePage> {
                   padding: EdgeInsets.all(20),
                   color: Colors.blue,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)
+                      borderRadius: BorderRadius.circular(10)
                   ),
                   child: Align(
-                    child: 
-                      Provider.of<UserProvider>(context).isLoading() ?
-                      CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,) :
-                      Text('Get Your Following Now', style: TextStyle(color: Colors.white),),
+                    child:
+                    Provider.of<UserProvider>(context).isLoading() ?
+                    CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,) :
+                    Text('Get Your Following Now', style: TextStyle(color: Colors.white),),
                   ), onPressed: () {
-                    _getUser();
-                  },
+                  _getUser(context);
+                },
                 )
               ],
             ),
