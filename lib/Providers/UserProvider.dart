@@ -5,8 +5,8 @@ import 'package:github_following/Models/User.dart';
 import 'package:github_following/Requests/GithubRequest.dart';
 
 class UserProvider with ChangeNotifier {
-  User user;
-  String errorMessage;
+  User? user;
+  String? errorMessage;
   bool loading = false;
 
   Future<bool> fetchUser(username) async {
@@ -41,7 +41,7 @@ class UserProvider with ChangeNotifier {
   }
 
   User getUSer() { 
-    return user;
+    return user!;
   }
 
   void setMessage(value) {
@@ -50,7 +50,7 @@ class UserProvider with ChangeNotifier {
   }
 
   String getMessage() {
-    return errorMessage;
+    return errorMessage??"";
   }
 
   bool isUser() {

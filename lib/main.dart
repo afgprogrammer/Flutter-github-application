@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(
   ChangeNotifierProvider<UserProvider>(
-    builder: (context) => UserProvider(),
+    create: (context) => UserProvider(),
     child: MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
@@ -24,9 +24,9 @@ class _StateHomePage extends State<HomePage> {
 
   void _getUser() {
     if (_controller.text == '') {
-      Provider.of<UserProvider>(context).setMessage('Please Enter your username');
+      Provider.of<UserProvider>(context, listen: false).setMessage('Please Enter your username');
     } else {
-      Provider.of<UserProvider>(context).fetchUser(_controller.text).then((value) {
+      Provider.of<UserProvider>(context, listen: false).fetchUser(_controller.text).then((value) {
         if (value) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => FollowingPage()));
         }
@@ -36,6 +36,7 @@ class _StateHomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final value = context.watch<UserProvider>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -67,13 +68,13 @@ class _StateHomePage extends State<HomePage> {
                   ),
                   child: TextField(
                     onChanged: (value) {
-                      Provider.of<UserProvider>(context).setMessage(null);
+                      Provider.of<UserProvider>(context, listen: false).setMessage(null);
                     },
                     controller: _controller,
-                    enabled: !Provider.of<UserProvider>(context).isLoading(),
+                    enabled: !Provider.of<UserProvider>(context, listen: false).isLoading(),
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
-                      errorText: Provider.of<UserProvider>(context).getMessage(),
+                      errorText: Provider.of<UserProvider>(context, listen: false).getMessage(),
                       border: InputBorder.none,
                       hintText: "Github username",
                       hintStyle: TextStyle(color: Colors.grey)
@@ -89,9 +90,9 @@ class _StateHomePage extends State<HomePage> {
                   ),
                   child: Align(
                     child: 
-                      Provider.of<UserProvider>(context).isLoading() ?
+                      Provider.of<UserProvider>(context, listen: false).isLoading() ?
                       CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 2,) :
-                      Text('Get Your Following Now', style: TextStyle(color: Colors.white),),
+                      Text('Get Your Followers Now', style: TextStyle(color: Colors.white),),
                   ), onPressed: () {
                     _getUser();
                   },

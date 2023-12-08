@@ -1,22 +1,23 @@
 PODS:
   - Flutter (1.0.0)
-  - shared_preferences (0.0.1):
+  - shared_preferences_foundation (0.0.1):
     - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
-  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - Flutter (from `Flutter`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
-  shared_preferences:
-    :path: ".symlinks/plugins/shared_preferences/ios"
+    :path: Flutter
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 SPEC CHECKSUMS:
-  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
 
-PODFILE CHECKSUM: 10ae9c18d12c9ffc2275c9a159a3b1e281990db0
+PODFILE CHECKSUM: aa3b1d9cb94e8055dc6468141196cf9e4c8e33df
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.11.3
